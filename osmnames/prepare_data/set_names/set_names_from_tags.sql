@@ -9,6 +9,7 @@ BEGIN
   name := current_name;
   IF name = '' IS NOT FALSE THEN
     SELECT COALESCE(
+                  all_tags -> 'name:it',
                   all_tags -> 'name',
                   all_tags -> 'name:fr',
                   all_tags -> 'name:de',
