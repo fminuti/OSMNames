@@ -1,4 +1,6 @@
-FROM golang:1.11
+FROM golang:1.12
+
+ENV APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1
 
 RUN echo 'deb http://apt.postgresql.org/pub/repos/apt/ stretch-pgdg main' >> /etc/apt/sources.list && \
     wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
