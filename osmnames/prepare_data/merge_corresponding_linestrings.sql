@@ -24,7 +24,7 @@ CREATE TABLE osm_merged_linestring AS
   WHERE
     a.name = b.name AND
     a.parent_id = b.parent_id AND
-    st_dwithin(a.geometry, b.geometry, 1000) AND
+    st_dwithin(a.geometry, b.geometry, 100) AND
     a.parent_id IS NOT NULL AND
     a.id != b.id
   GROUP BY
