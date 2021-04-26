@@ -203,7 +203,7 @@ tables:
     columns:
     - name: osm_id
       type: id
-    - key: name:en
+    - key: name:it
       name: name
       type: string
     - key: type
@@ -231,7 +231,7 @@ tables:
       name: relation_type
       type: string
     - name: name
-      key: name:en
+      key: name:it
       type: string
       from_member: true
     mapping:
