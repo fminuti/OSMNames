@@ -24,7 +24,7 @@ CREATE TABLE osm_merged_linestring AS
   WHERE
     a.name = b.name AND
     a.parent_id = b.parent_id AND
-    st_dwithin(a.geometry, b.geometry, 100) AND
+    st_dwithin(a.geometry, b.geometry, 50) AND
     a.parent_id IS NOT NULL AND
     a.id != b.id
   GROUP BY
@@ -41,6 +41,7 @@ DROP INDEX IF EXISTS idx_osm_linestring_merged_false; --&
 -- set merged_into for all merged linestrings
 UPDATE osm_linestring SET merged_into = osm_merged_linestring.osm_id
 FROM osm_merged_linestring
-WHERE osm_linestring.id = ANY(osm_merged_linestring.member_ids);
+WHERE osm_linestring.id = ANY(osm_merged_linestring.member_ids) AND
+      st_dwithin(osm_linestring.geometry, osm_merged_linestring.geometry, 50);
 
 CREATE INDEX idx_osm_linestring_merged_false ON osm_linestring(merged_into) WHERE merged_into IS NULL;
